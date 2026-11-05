@@ -22,6 +22,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onSelectMenu }) => {
         <li onClick={() => onSelectMenu("About")}>About Us</li>
         <li onClick={() => onSelectMenu("Contact")}>Contact Us</li>
       </ul>
+      <div className="sidebar-footer">
+        <p>© {new Date().getFullYear()} Shravi Digital</p>
+        <p>All Rights Reserved</p>
+      </div>
     </div>
   );
 };
