@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #E10600;
+  color: white;
+  padding: 10px;
+}
+
+.menu-toggle {
+  background: #FFC107;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.navbar-title {
+  font-family: "Noto Sans Devanagari", sans-serif;
+  font-size: 20px;
+}

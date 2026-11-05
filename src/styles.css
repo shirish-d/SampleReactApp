@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans Devanagari", sans-serif;
+}
+
+.app {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #E10600;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.sidebar .logo {
+  padding: 20px;
+  font-size: 20px;
+  background-color: #FFC107;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background-color: #FFC107;
+  color: black;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #FFC107;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
