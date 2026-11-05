@@ -4,9 +4,51 @@ body {
   overflow-x: hidden;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ticker-banner {
+  background-color: #FFC107;
+  color: #B30000;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 2px solid #E10600;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.ticker-banner:hover .ticker-text {
+  animation-play-state: paused;
+}
+
+.ticker-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: marquee 25s linear infinite;
+  font-family: "Noto Sans Devanagari", sans-serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .app {
   display: flex;
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
   position: relative;
 }
 
@@ -16,16 +58,52 @@ body {
   left: 10px;
   background: #FFC107;
   border: none;
-  padding: 10px 14px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   z-index: 1000;
-  font-size: 16px;
-  border-radius: 4px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #ffb300;
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2.5px;
+  background-color: #B30000;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Morph from ☰ to ✕ when open */
+.toggle-btn.open .hamburger-bar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.toggle-btn.open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.toggle-btn.open .hamburger-bar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 .content {
   flex: 1;
   padding: 20px 40px;
+  overflow-y: auto;
   transition: padding-left 0.3s ease;
 }
 

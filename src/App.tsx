@@ -18,10 +18,25 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="app">
-      <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>☰</button>
-      <Sidebar isOpen={isOpen} onSelectMenu={setMenu} />
-      <div className="content">{renderPage()}</div>
+    <div className="app-container">
+      <div className="ticker-banner">
+        <div className="ticker-text">
+          📢 हे संकेतस्थळ सध्या विकसित केले जात आहे — नवीन आरत्या व स्तोत्रे लवकरच जोडली जातील.
+        </div>
+      </div>
+      <div className="app">
+        <button
+          className={`toggle-btn ${isOpen ? "open" : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          <span className="hamburger-bar"></span>
+          <span className="hamburger-bar"></span>
+          <span className="hamburger-bar"></span>
+        </button>
+        <Sidebar isOpen={isOpen} onSelectMenu={setMenu} />
+        <div className="content">{renderPage()}</div>
+      </div>
     </div>
   );
 };
