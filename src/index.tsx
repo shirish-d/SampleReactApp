@@ -4,10 +4,10 @@ import App from "./App";
 import "./styles.css";
 
 // Load Marathi font from Google Fonts
-const link = document.createElement("link");
-link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap";
-link.rel = "stylesheet";
-document.head.appendChild(link);
+// const link = document.createElement("link");
+// link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap";
+// link.rel = "stylesheet";
+// document.head.appendChild(link);
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {

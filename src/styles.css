@@ -1,43 +1,13 @@
 body {
   margin: 0;
   font-family: "Noto Sans Devanagari", sans-serif;
+  overflow-x: hidden;
 }
 
 .app {
   display: flex;
-}
-
-.sidebar {
-  width: 250px;
-  background-color: #E10600;
-  color: white;
-  transition: transform 0.3s ease;
-}
-
-.sidebar .logo {
-  padding: 20px;
-  font-size: 20px;
-  background-color: #FFC107;
-  text-align: center;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 15px;
-  cursor: pointer;
-}
-
-.sidebar li:hover {
-  background-color: #FFC107;
-  color: black;
-}
-
-.sidebar.open {
-  transform: translateX(0);
+  min-height: 100vh;
+  position: relative;
 }
 
 .toggle-btn {
@@ -46,6 +16,19 @@ body {
   left: 10px;
   background: #FFC107;
   border: none;
-  padding: 10px;
+  padding: 10px 14px;
   cursor: pointer;
+  z-index: 1000;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px 40px;
+  transition: padding-left 0.3s ease;
+}
+
+.sidebar:not(.open) + .content {
+  padding-left: 60px; /* Space for the toggle button when sidebar is closed */
 }
