@@ -11,7 +11,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onSelectMenu }) => {
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="logo">
         <img
-          src={`${process.env.PUBLIC_URL}/MarathiArati-Logo.png`}
+          src={`${process.env.PUBLIC_URL}/MarathiArati_logo.png`}
           alt="Marathi Arati Logo"
           className="logo-img"
         />
