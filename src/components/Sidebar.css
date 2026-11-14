@@ -9,6 +9,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .sidebar.open {
@@ -20,6 +21,7 @@
   padding: 0;
   margin: 0;
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
 }
 
@@ -35,12 +37,13 @@
 }
 
 .sidebar-footer {
-  padding: 15px 10px;
+  padding: 14px 10px;
   text-align: center;
   font-size: 12px;
   color: whitesmoke;
   border-top: 1px solid #FFC107;
   flex-shrink: 0;
+  margin-top: auto;
 }
 
 .sidebar-footer p {
@@ -57,8 +60,25 @@
     top: 0;
     bottom: 0;
     left: 0;
+    height: 100%;
+    max-height: 100%;
     z-index: 1000;
     box-shadow: 4px 0 16px rgba(0, 0, 0, 0.35);
+  }
+
+  .sidebar li {
+    padding: 13px 16px;
+    font-size: 15px;
+  }
+
+  .sidebar-footer {
+    padding: 10px 8px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+    font-size: 11px;
+  }
+
+  .sidebar-footer p {
+    margin: 2px 0;
   }
 
   .sidebar-backdrop.visible {
