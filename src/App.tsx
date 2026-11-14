@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import AratiPage from "./pages/AratiPage";
+import StotraPage from "./pages/StotraPage";
 import "./styles.css";
 import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   const [menu, setMenu] = useState("Arati");
   const [menuKey, setMenuKey] = useState(0);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 768;
+    }
+    return false;
+  });
 
   const handleSelectMenu = (selected: string) => {
     setMenu(selected);
     setMenuKey((prev) => prev + 1);
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setIsOpen(false);
+    }
   };
 
   const renderPage = () => {
     switch (menu) {
       case "Arati": return <AratiPage key={menuKey} />;
-      case "Stotra": return <div>स्तोत्र पृष्ठ</div>;
+      case "Stotra": return <StotraPage key={menuKey} />;
       case "About": return <div>About Us</div>;
       case "Contact": return <div>Contact Us</div>;
       default: return null;
@@ -33,6 +42,12 @@ const App: React.FC = () => {
         </div>
       </div>
       <div className="app">
+        {isOpen && (
+          <div
+            className="sidebar-backdrop visible"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
         <Sidebar isOpen={isOpen} onSelectMenu={handleSelectMenu} />
         <div className="content">{renderPage()}</div>
       </div>

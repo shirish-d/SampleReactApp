@@ -1,0 +1,25 @@
+{
+  "short_name": "मराठी आरती",
+  "name": "मराठी आरती आणि स्तोत्र संग्रह",
+  "description": "मराठी आरती व स्तोत्र संग्रह - ऑफलाइन उपलब्ध",
+  "icons": [
+    {
+      "src": "MarathiArati_logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "MarathiArati_logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#E10600",
+  "background_color": "#FFFFFF",
+  "orientation": "any",
+  "scope": "/"
+}
