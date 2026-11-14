@@ -2,21 +2,18 @@ import React from "react";
 import "./Navbar.css";
 
 interface NavbarProps {
-  isOpen: boolean;
   onToggleMenu: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isOpen, onToggleMenu }) => {
+const Navbar: React.FC<NavbarProps> = ({ onToggleMenu }) => {
   return (
     <nav className="navbar">
       <button
-        className={`menu-toggle ${isOpen ? "open" : ""}`}
+        className="menu-toggle"
         onClick={onToggleMenu}
         aria-label="Toggle Menu"
       >
-        <span className="hamburger-bar"></span>
-        <span className="hamburger-bar"></span>
-        <span className="hamburger-bar"></span>
+        ☰
       </button>
       <div className="logo">
         <img

@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <Navbar isOpen={isOpen} onToggleMenu={() => setIsOpen(!isOpen)} />
+      <Navbar onToggleMenu={() => setIsOpen(!isOpen)} />
       <div className="ticker-banner">
         <div className="ticker-text">
           📢 हे संकेतस्थळ सध्या विकसित केले जात आहे — नवीन आरत्या व स्तोत्रे लवकरच जोडली जातील.

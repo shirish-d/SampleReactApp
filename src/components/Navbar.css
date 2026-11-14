@@ -4,10 +4,12 @@
   background-color: #E10600;
   color: #FFC107;
   padding: 10px;
+  border-bottom: 5px solid #FFC107;
+  box-sizing: border-box;
 }
 
 .navbar .logo {
-  padding: 15px 20px;
+  padding: 1px 2px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -26,47 +28,12 @@
 .menu-toggle {
   background: #FFC107;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+  padding: 8px 12px;
   margin-right: 15px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.menu-toggle:hover {
-  background-color: #ffb300;
-}
-
-.menu-toggle .hamburger-bar {
-  width: 20px;
-  height: 2.5px;
-  background-color: #B30000;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
-
-/* Morph from ☰ to ✕ when open */
-.menu-toggle.open .hamburger-bar:nth-child(1) {
-  transform: translateY(7.5px) rotate(45deg);
-}
-
-.menu-toggle.open .hamburger-bar:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.menu-toggle.open .hamburger-bar:nth-child(3) {
-  transform: translateY(-7.5px) rotate(-45deg);
+  font-size: 18px;
+  border-radius: 6px;
+  color: #E10600;
 }
 
 .navbar-title {
