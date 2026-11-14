@@ -52,61 +52,8 @@ body {
   position: relative;
 }
 
-.toggle-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #FFC107;
-  border: none;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 1000;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease;
-}
-
-.toggle-btn:hover {
-  background-color: #ffb300;
-}
-
-.hamburger-bar {
-  width: 20px;
-  height: 2.5px;
-  background-color: #B30000;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
-
-/* Morph from ☰ to ✕ when open */
-.toggle-btn.open .hamburger-bar:nth-child(1) {
-  transform: translateY(7.5px) rotate(45deg);
-}
-
-.toggle-btn.open .hamburger-bar:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.toggle-btn.open .hamburger-bar:nth-child(3) {
-  transform: translateY(-7.5px) rotate(-45deg);
-}
-
 .content {
   flex: 1;
   padding: 20px 40px;
   overflow-y: auto;
-  transition: padding-left 0.3s ease;
-}
-
-.sidebar:not(.open) + .content {
-  padding-left: 60px; /* Space for the toggle button when sidebar is closed */
 }
