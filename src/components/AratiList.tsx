@@ -8,14 +8,15 @@ interface AratiListProps {
 const AratiList: React.FC<AratiListProps> = ({ aratis, onSelectArati }) => {
   return (
     <div>
-      <h2>आरती यादी</h2>
-      <ul>
-        {aratis.map((name) => (
+      <h2>आरती</h2>
+      <ol>
+        {aratis.map((name) => 
+        (
           <li key={name} onClick={() => onSelectArati(name)}>
             {name}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 };

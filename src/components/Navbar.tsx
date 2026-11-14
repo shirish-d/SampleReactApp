@@ -11,7 +11,14 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleMenu }) => {
       <button className="menu-toggle" onClick={onToggleMenu}>
         ☰
       </button>
-      <h1 className="navbar-title">आरती अॅप</h1>
+      <div className="logo">
+        <img
+          src={`${process.env.PUBLIC_URL}/MarathiArati_small_logo.png`}
+          alt="Marathi Arati Logo"
+          className="logo-img"
+        />
+      </div>
+      <h1 className="navbar-title">मराठी आरती</h1>
     </nav>
   );
 };

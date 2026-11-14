@@ -2,8 +2,25 @@
   display: flex;
   align-items: center;
   background-color: #E10600;
-  color: white;
+  color: #FFC107;
   padding: 10px;
+}
+
+.navbar .logo {
+  padding: 15px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .logo .logo-img {
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .menu-toggle {

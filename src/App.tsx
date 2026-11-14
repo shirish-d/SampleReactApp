@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import AratiPage from "./pages/AratiPage";
 import "./styles.css";
+import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   const [menu, setMenu] = useState("Arati");
@@ -19,13 +20,14 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
+      <Navbar onToggleMenu={() => setIsOpen(!isOpen)} />
       <div className="ticker-banner">
         <div className="ticker-text">
           📢 हे संकेतस्थळ सध्या विकसित केले जात आहे — नवीन आरत्या व स्तोत्रे लवकरच जोडली जातील.
         </div>
       </div>
       <div className="app">
-        <button
+        {/* <button
           className={`toggle-btn ${isOpen ? "open" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
@@ -33,7 +35,7 @@ const App: React.FC = () => {
           <span className="hamburger-bar"></span>
           <span className="hamburger-bar"></span>
           <span className="hamburger-bar"></span>
-        </button>
+        </button> */}
         <Sidebar isOpen={isOpen} onSelectMenu={setMenu} />
         <div className="content">{renderPage()}</div>
       </div>

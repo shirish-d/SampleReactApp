@@ -7,9 +7,11 @@ const AratiPage: React.FC = () => {
 
   return (
     <div>
-      {!selectedArati ? (
+      {!selectedArati ? 
+      (
         <AratiList aratis={Object.keys(ARATIS)} onSelectArati={setSelectedArati} />
-      ) : (
+      ) : 
+      (
         <div>
           <h2>{selectedArati}</h2>
           <pre style={{ fontFamily: "Noto Sans Devanagari, serif" }}>

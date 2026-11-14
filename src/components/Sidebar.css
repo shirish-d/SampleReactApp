@@ -15,24 +15,6 @@
   margin-left: 0; /* Visible when open */
 }
 
-.sidebar .logo {
-  padding: 15px 20px;
-  background-color: #FFC107; /* Yellow theme */
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sidebar .logo .logo-img {
-  max-width: 100px;
-  max-height: 100px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 .sidebar ul {
   list-style: none;
   padding: 0;
