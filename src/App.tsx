@@ -6,11 +6,17 @@ import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   const [menu, setMenu] = useState("Arati");
+  const [menuKey, setMenuKey] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
+
+  const handleSelectMenu = (selected: string) => {
+    setMenu(selected);
+    setMenuKey((prev) => prev + 1);
+  };
 
   const renderPage = () => {
     switch (menu) {
-      case "Arati": return <AratiPage />;
+      case "Arati": return <AratiPage key={menuKey} />;
       case "Stotra": return <div>स्तोत्र पृष्ठ</div>;
       case "About": return <div>About Us</div>;
       case "Contact": return <div>Contact Us</div>;
@@ -27,7 +33,7 @@ const App: React.FC = () => {
         </div>
       </div>
       <div className="app">
-        <Sidebar isOpen={isOpen} onSelectMenu={setMenu} />
+        <Sidebar isOpen={isOpen} onSelectMenu={handleSelectMenu} />
         <div className="content">{renderPage()}</div>
       </div>
     </div>
