@@ -14,7 +14,7 @@ const AratiPage: React.FC = () => {
       (
         <div>
           <h2>{selectedArati}</h2>
-          <pre style={{ fontFamily: "Noto Sans Devanagari, serif" }}>
+          <pre style={{ fontFamily: '"Noto Sans Devanagari", sans-serif' }}>
             {ARATIS[selectedArati]}
           </pre>
         </div>

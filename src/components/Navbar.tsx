@@ -6,6 +6,8 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onToggleMenu }) => {
+  const logoUrl = `${process.env.PUBLIC_URL || ""}/MarathiArati_logo.png`;
+
   return (
     <nav className="navbar">
       <button
@@ -17,7 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleMenu }) => {
       </button>
       <div className="logo">
         <img
-          src={`${process.env.PUBLIC_URL}/MarathiArati_small_logo.png`}
+          src={logoUrl}
           alt="Marathi Arati Logo"
           className="logo-img"
         />
