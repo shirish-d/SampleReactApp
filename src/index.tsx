@@ -2,12 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles.css";
-
-// Load Marathi font from Google Fonts
-// const link = document.createElement("link");
-// link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap";
-// link.rel = "stylesheet";
-// document.head.appendChild(link);
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -20,3 +15,6 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// Register service worker for Progressive Web App capabilities
+serviceWorkerRegistration.register();

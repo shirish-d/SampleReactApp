@@ -2,8 +2,27 @@
   display: flex;
   align-items: center;
   background-color: #E10600;
-  color: white;
+  color: #FFC107;
   padding: 10px;
+  border-bottom: 5px solid #FFC107;
+  box-sizing: border-box;
+}
+
+.navbar .logo {
+  padding: 1px 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .logo .logo-img {
+  max-width: 80px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .menu-toggle {
@@ -13,9 +32,11 @@
   margin-right: 15px;
   cursor: pointer;
   font-size: 18px;
+  border-radius: 6px;
+  color: #E10600;
 }
 
 .navbar-title {
   font-family: "Noto Sans Devanagari", sans-serif;
-  font-size: 20px;
+  font-size: 30px;
 }
