@@ -27,13 +27,13 @@ const AratiList: React.FC<AratiListProps> = ({ aratis, onSelectArati }) => {
           </tr>
         </thead>
         <tbody>
-          {aratis.map((arati) => (
+          {aratis.map((arati, index) => (
             <tr
               key={arati.code}
               onClick={() => handleSelect(arati)}
               className={clickedItem === arati.code ? "row-clicked" : ""}
             >
-              <td className="col-index">{arati.index}</td>
+              <td className="col-index">{index + 1}</td>
               <td className="col-title">{arati.title}</td>
             </tr>
           ))}

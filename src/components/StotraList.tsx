@@ -27,13 +27,13 @@ const StotraList: React.FC<StotraListProps> = ({ stotras, onSelectStotra }) => {
           </tr>
         </thead>
         <tbody>
-          {stotras.map((stotra) => (
+          {stotras.map((stotra, index) => (
             <tr
               key={stotra.code}
               onClick={() => handleSelect(stotra)}
               className={clickedItem === stotra.code ? "row-clicked" : ""}
             >
-              <td className="col-index">{stotra.index}</td>
+              <td className="col-index">{index + 1}</td>
               <td className="col-title">{stotra.title}</td>
             </tr>
           ))}
