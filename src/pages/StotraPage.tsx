@@ -15,22 +15,32 @@ const StotraPage: React.FC = () => {
         <StotraList stotras={Object.keys(STOTRAS)} onSelectStotra={setSelectedStotra} />
       ) : (
         <div className="detail-container">
-          <button className="back-btn" onClick={handleBack}>
-            <span className="back-icon">&lt;</span> स्तोत्र यादी
-          </button>
-          <div>
-            <h2 className="detail-title">{selectedStotra}</h2>
+          <div className="detail-header">
+            <button
+              className="back-icon-btn"
+              onClick={handleBack}
+              title="मागे जा"
+              aria-label="Back"
+            >
+              ←
+            </button>
+            <h2 className="detail-title" onClick={handleBack} title="मागे जा">
+              {selectedStotra}
+            </h2>
           </div>
           <pre className="detail-content">
             {STOTRAS[selectedStotra]}
           </pre>
-          <button
-            className="back-btn"
-            onClick={handleBack}
-            style={{ marginTop: "20px" }}
-          >
-            <span className="back-icon">&lt;</span> स्तोत्र यादी
-          </button>
+          <div style={{ marginTop: "20px" }}>
+            <button
+              className="back-icon-btn"
+              onClick={handleBack}
+              title="मागे जा"
+              aria-label="Back"
+            >
+              ←
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -15,22 +15,32 @@ const AratiPage: React.FC = () => {
         <AratiList aratis={Object.keys(ARATIS)} onSelectArati={setSelectedArati} />
       ) : (
         <div className="detail-container">
-          <button className="back-btn" onClick={handleBack}>
-            <span className="back-icon">&lt;</span> आरती यादी
-          </button>
-          <div>
-            <h2 className="detail-title">{selectedArati}</h2>
+          <div className="detail-header">
+            <button
+              className="back-icon-btn"
+              onClick={handleBack}
+              title="मागे जा"
+              aria-label="Back"
+            >
+              ←
+            </button>
+            <h2 className="detail-title" onClick={handleBack} title="मागे जा">
+              {selectedArati}
+            </h2>
           </div>
           <pre className="detail-content">
             {ARATIS[selectedArati]}
           </pre>
-          <button
-            className="back-btn"
-            onClick={handleBack}
-            style={{ marginTop: "20px" }}
-          >
-            <span className="back-icon">&lt;</span> आरती यादी
-          </button>
+          <div style={{ marginTop: "20px" }}>
+            <button
+              className="back-icon-btn"
+              onClick={handleBack}
+              title="मागे जा"
+              aria-label="Back"
+            >
+              ←
+            </button>
+          </div>
         </div>
       )}
     </div>

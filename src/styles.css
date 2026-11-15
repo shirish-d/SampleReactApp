@@ -177,51 +177,58 @@ body {
   max-width: 900px;
 }
 
-.back-btn {
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  border-bottom: 3px solid #FFC107;
+  padding-bottom: 8px;
+}
+
+.back-icon-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
   background-color: #E10600;
   color: #FFC107;
   border: 2px solid #FFC107;
-  padding: 8px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 700;
   cursor: pointer;
-  font-family: "Noto Sans Devanagari", sans-serif;
-  margin-bottom: 18px;
+  line-height: 1;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(225, 6, 0, 0.2);
+  user-select: none;
 }
 
-.back-btn .back-icon {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-}
-
-.back-btn:hover {
+.back-icon-btn:hover {
   background-color: #FFC107;
   color: #E10600;
   border-color: #E10600;
+  transform: scale(1.06);
 }
 
-.back-btn:active {
-  transform: scale(0.97);
+.back-icon-btn:active {
+  transform: scale(0.94);
 }
 
 .detail-title {
   color: #E10600;
   font-size: 26px;
-  margin-top: 0;
-  margin-bottom: 16px;
+  margin: 0;
   font-weight: 700;
-  border-bottom: 3px solid #FFC107;
-  padding-bottom: 8px;
-  display: inline-block;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: opacity 0.15s ease;
+}
+
+.detail-title:hover {
+  opacity: 0.85;
 }
 
 .detail-content {
@@ -260,20 +267,26 @@ body {
     width: 60px;
   }
 
+  .detail-header {
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+  }
+
+  .back-icon-btn {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 18px;
+  }
+
   .detail-title {
     font-size: 20px;
-    margin-bottom: 12px;
   }
 
   .detail-content {
     font-size: 15px;
     padding: 16px;
     line-height: 1.8;
-  }
-
-  .back-btn {
-    padding: 6px 14px;
-    font-size: 14px;
-    margin-bottom: 14px;
   }
 }
