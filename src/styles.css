@@ -172,6 +172,73 @@ body {
   border-bottom: none;
 }
 
+/* Detail View (Arati / Stotra Content) Styling */
+.detail-container {
+  max-width: 900px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #E10600;
+  color: #FFC107;
+  border: 2px solid #FFC107;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Noto Sans Devanagari", sans-serif;
+  margin-bottom: 18px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(225, 6, 0, 0.2);
+}
+
+.back-btn .back-icon {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-btn:hover {
+  background-color: #FFC107;
+  color: #E10600;
+  border-color: #E10600;
+}
+
+.back-btn:active {
+  transform: scale(0.97);
+}
+
+.detail-title {
+  color: #E10600;
+  font-size: 26px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-weight: 700;
+  border-bottom: 3px solid #FFC107;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.detail-content {
+  font-family: "Noto Sans Devanagari", sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  background-color: #FFFDF5;
+  padding: 22px 28px;
+  border-radius: 8px;
+  border: 1px solid #FFE082;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #222222;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .content {
     padding: 16px;
@@ -191,5 +258,22 @@ body {
   .custom-table th.col-index,
   .custom-table td.col-index {
     width: 60px;
+  }
+
+  .detail-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .detail-content {
+    font-size: 15px;
+    padding: 16px;
+    line-height: 1.8;
+  }
+
+  .back-btn {
+    padding: 6px 14px;
+    font-size: 14px;
+    margin-bottom: 14px;
   }
 }
