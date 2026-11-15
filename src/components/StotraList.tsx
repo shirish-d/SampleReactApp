@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { ContentEntry } from "../services/content";
 
 interface StotraListProps {
-  stotras: string[];
-  onSelectStotra: (name: string) => void;
+  stotras: ContentEntry[];
+  onSelectStotra: (stotra: ContentEntry) => void;
 }
 
 const StotraList: React.FC<StotraListProps> = ({ stotras, onSelectStotra }) => {
   const [clickedItem, setClickedItem] = useState<string | null>(null);
 
-  const handleSelect = (name: string) => {
-    setClickedItem(name);
+  const handleSelect = (stotra: ContentEntry) => {
+    setClickedItem(stotra.code);
     setTimeout(() => {
-      onSelectStotra(name);
+      onSelectStotra(stotra);
     }, 180);
   };
 
@@ -26,14 +27,14 @@ const StotraList: React.FC<StotraListProps> = ({ stotras, onSelectStotra }) => {
           </tr>
         </thead>
         <tbody>
-          {stotras.map((name, index) => (
+          {stotras.map((stotra) => (
             <tr
-              key={name}
-              onClick={() => handleSelect(name)}
-              className={clickedItem === name ? "row-clicked" : ""}
+              key={stotra.code}
+              onClick={() => handleSelect(stotra)}
+              className={clickedItem === stotra.code ? "row-clicked" : ""}
             >
-              <td className="col-index">{index + 1}</td>
-              <td className="col-title">{name}</td>
+              <td className="col-index">{stotra.index}</td>
+              <td className="col-title">{stotra.title}</td>
             </tr>
           ))}
         </tbody>

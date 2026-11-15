@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { ContentEntry } from "../services/content";
 
 interface AratiListProps {
-  aratis: string[];
-  onSelectArati: (name: string) => void;
+  aratis: ContentEntry[];
+  onSelectArati: (arati: ContentEntry) => void;
 }
 
 const AratiList: React.FC<AratiListProps> = ({ aratis, onSelectArati }) => {
   const [clickedItem, setClickedItem] = useState<string | null>(null);
 
-  const handleSelect = (name: string) => {
-    setClickedItem(name);
+  const handleSelect = (arati: ContentEntry) => {
+    setClickedItem(arati.code);
     setTimeout(() => {
-      onSelectArati(name);
+      onSelectArati(arati);
     }, 180);
   };
 
@@ -26,14 +27,14 @@ const AratiList: React.FC<AratiListProps> = ({ aratis, onSelectArati }) => {
           </tr>
         </thead>
         <tbody>
-          {aratis.map((name, index) => (
+          {aratis.map((arati) => (
             <tr
-              key={name}
-              onClick={() => handleSelect(name)}
-              className={clickedItem === name ? "row-clicked" : ""}
+              key={arati.code}
+              onClick={() => handleSelect(arati)}
+              className={clickedItem === arati.code ? "row-clicked" : ""}
             >
-              <td className="col-index">{index + 1}</td>
-              <td className="col-title">{name}</td>
+              <td className="col-index">{arati.index}</td>
+              <td className="col-title">{arati.title}</td>
             </tr>
           ))}
         </tbody>

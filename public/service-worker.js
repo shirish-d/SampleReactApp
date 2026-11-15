@@ -1,5 +1,6 @@
-const CACHE_NAME = 'marathi-arati-v1';
-const STATIC_ASSETS = [
+const CACHE_PREFIX = 'marathi-arati-';
+const CACHE_NAME = `${CACHE_PREFIX}v2`;
+const SHELL_ASSETS = [
   './',
   './index.html',
   './manifest.json',
@@ -8,69 +9,88 @@ const STATIC_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    }).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(SHELL_ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((name) => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
+    caches.keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames
+            .filter((name) => name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME)
+            .map((name) => caches.delete(name))
+        )
+      )
+      .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+  const request = event.request;
+  if (request.method !== 'GET') {
+    return;
+  }
 
-  const url = new URL(event.request.url);
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) {
+    return;
+  }
 
-  // For navigation requests (loading pages)
-  if (event.request.mode === 'navigate') {
+  if (request.mode === 'navigate' || url.pathname.includes('/data/')) {
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match('./index.html') || caches.match('/');
-      })
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            event.waitUntil(
+              caches.open(CACHE_NAME)
+                .then((cache) => cache.put(request, response.clone()))
+            );
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cache = await caches.open(CACHE_NAME);
+          const cachedResponse = await cache.match(request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          if (request.mode === 'navigate') {
+            const appShell = await cache.match('./index.html');
+            if (appShell) {
+              return appShell;
+            }
+          }
+
+          return new Response('Offline and no cached copy is available.', {
+            status: 503,
+            statusText: 'Service Unavailable'
+          });
+        })
     );
     return;
   }
 
-  // Cache-first for images, fonts, scripts, and stylesheets
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return fetch(event.request)
-        .then((networkResponse) => {
-          if (
-            !networkResponse ||
-            networkResponse.status !== 200 ||
-            networkResponse.type === 'opaque' ||
-            (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')
-          ) {
-            return networkResponse;
+  if (url.pathname.includes('/static/')) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) =>
+        cache.match(request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
           }
 
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
+          return fetch(request).then((response) => {
+            if (response.ok) {
+              event.waitUntil(cache.put(request, response.clone()));
+            }
+            return response;
           });
-
-          return networkResponse;
         })
-        .catch(() => {
-          return caches.match(event.request);
-        });
-    })
-  );
+      )
+    );
+  }
 });

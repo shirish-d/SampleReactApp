@@ -1,32 +1,41 @@
 export function register() {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      navigator.serviceWorker
-        .register(swUrl)
-        .then((registration) => {
-          console.log('ServiceWorker registered successfully: ', registration.scope);
-        })
-        .catch((error) => {
-          console.error('ServiceWorker registration failed: ', error);
-        });
-    });
-  } else if ('serviceWorker' in navigator) {
-    // In development mode, optionally register or support testing
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      navigator.serviceWorker
-        .register(swUrl)
-        .then((registration) => {
-          console.log('ServiceWorker registered in dev mode: ', registration.scope);
-        })
-        .catch((error) => {
-          console.warn('ServiceWorker registration error in dev mode: ', error);
-        });
-    });
+  if (!("serviceWorker" in navigator)) {
+    return;
   }
+
+  const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+
+  if (process.env.NODE_ENV !== "production") {
+    const scriptUrl = new URL(swUrl, window.location.href).href;
+    navigator.serviceWorker
+      .getRegistrations()
+      .then((registrations) =>
+        Promise.all(
+          registrations
+            .filter((registration) =>
+              [registration.active, registration.waiting, registration.installing].some(
+                (worker) => worker?.scriptURL === scriptUrl
+              )
+            )
+            .map((registration) => registration.unregister())
+        )
+      )
+      .catch((error) => {
+        console.error("ServiceWorker cleanup failed: ", error);
+      });
+    return;
+  }
+
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        console.log("ServiceWorker registered successfully: ", registration.scope);
+      })
+      .catch((error) => {
+        console.error("ServiceWorker registration failed: ", error);
+      });
+  });
 }
 
 export function unregister() {
