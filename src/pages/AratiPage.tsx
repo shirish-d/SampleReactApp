@@ -8,9 +8,12 @@ const AratiPage: React.FC = () => (
   <ContentPage
     collection="aratis"
     listLoadingMessage={CONTENT_LOADING_MESSAGE}
-    contentLoadingMessage={CONTENT_LOADING_MESSAGE}
-    renderList={(entries, onSelect) => (
-      <AratiList aratis={entries} onSelectArati={onSelect} />
+    renderList={(entries, contentByCode, onSelect) => (
+      <AratiList
+        aratis={entries}
+        contentByCode={contentByCode}
+        onSelectArati={onSelect}
+      />
     )}
   />
 );
