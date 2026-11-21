@@ -8,6 +8,7 @@
 
 # production build artifacts
 /build
+/public/data/search-index/
 
 # misc
 .DS_Store

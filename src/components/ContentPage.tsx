@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
   ContentCollection,
+  ContentCollectionData,
   ContentEntry,
-  fetchContentEntries,
-  fetchContentFile,
+  fetchContentCollection,
 } from "../services/content";
 
 interface ContentPageProps {
   collection: ContentCollection;
   listLoadingMessage: string;
-  contentLoadingMessage: string;
   renderList: (
     entries: ContentEntry[],
+    contentByCode: ContentCollectionData["contentByCode"],
     onSelect: (entry: ContentEntry) => void
   ) => React.ReactNode;
 }
@@ -34,23 +34,24 @@ const BackButton: React.FC<BackButtonProps> = ({ onClick }) => (
 const ContentPage: React.FC<ContentPageProps> = ({
   collection,
   listLoadingMessage,
-  contentLoadingMessage,
   renderList,
 }) => {
   const [entries, setEntries] = useState<ContentEntry[]>([]);
+  const [contentByCode, setContentByCode] = useState<
+    ContentCollectionData["contentByCode"]
+  >({});
   const [selectedEntry, setSelectedEntry] = useState<ContentEntry | null>(null);
-  const [content, setContent] = useState<string | null>(null);
   const [listLoading, setListLoading] = useState(true);
-  const [contentLoading, setContentLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
 
-    fetchContentEntries(collection)
-      .then((loadedEntries) => {
+    fetchContentCollection(collection)
+      .then(({ entries: loadedEntries, contentByCode: loadedContentByCode }) => {
         if (active) {
           setEntries(loadedEntries);
+          setContentByCode(loadedContentByCode);
         }
       })
       .catch((loadError: Error) => {
@@ -69,44 +70,19 @@ const ContentPage: React.FC<ContentPageProps> = ({
     };
   }, [collection]);
 
-  useEffect(() => {
-    if (!selectedEntry) {
-      setContent(null);
-      setContentLoading(false);
-      return;
-    }
-
-    let active = true;
-    setContent(null);
-    setContentLoading(true);
-    setError(null);
-
-    fetchContentFile(collection, selectedEntry.filename)
-      .then((text) => {
-        if (active) {
-          setContent(text);
-        }
-      })
-      .catch((loadError: Error) => {
-        if (active) {
-          setError(loadError.message);
-        }
-      })
-      .finally(() => {
-        if (active) {
-          setContentLoading(false);
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, [collection, selectedEntry]);
-
   const handleBack = () => {
     setSelectedEntry(null);
     setError(null);
   };
+
+  const handleSelect = (entry: ContentEntry) => {
+    setSelectedEntry(entry);
+    setError(null);
+  };
+
+  const selectedContent = selectedEntry
+    ? contentByCode[selectedEntry.code]
+    : undefined;
 
   return (
     <div>
@@ -116,7 +92,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
         ) : error ? (
           <div className="list-container" role="alert">{error}</div>
         ) : (
-          renderList(entries, setSelectedEntry)
+          renderList(entries, contentByCode, handleSelect)
         )
       ) : (
         <div className="detail-container">
@@ -126,12 +102,12 @@ const ContentPage: React.FC<ContentPageProps> = ({
               {selectedEntry.title}
             </h2>
           </div>
-          {contentLoading ? (
-            <p>{contentLoadingMessage}</p>
-          ) : error ? (
+          {error ? (
             <p role="alert">{error}</p>
+          ) : selectedContent === undefined ? (
+            <p role="alert">Unable to load content for this entry.</p>
           ) : (
-            <pre className="detail-content">{content}</pre>
+            <pre className="detail-content">{selectedContent}</pre>
           )}
           <div style={{ marginTop: "20px" }}>
             <BackButton onClick={handleBack} />

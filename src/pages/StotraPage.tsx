@@ -8,9 +8,12 @@ const StotraPage: React.FC = () => (
   <ContentPage
     collection="stotras"
     listLoadingMessage={CONTENT_LOADING_MESSAGE}
-    contentLoadingMessage={CONTENT_LOADING_MESSAGE}
-    renderList={(entries, onSelect) => (
-      <StotraList stotras={entries} onSelectStotra={onSelect} />
+    renderList={(entries, contentByCode, onSelect) => (
+      <StotraList
+        stotras={entries}
+        contentByCode={contentByCode}
+        onSelectStotra={onSelect}
+      />
     )}
   />
 );
